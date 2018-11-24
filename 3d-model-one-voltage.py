@@ -6,23 +6,47 @@ Created on Fri Nov 23 21:53:13 2018
 """
 
 import numpy as np
-#import matplotlib.pyplot as plt
-#import csv
+import matplotlib.pyplot as plt
+from matplotlib import cm
+from mpl_toolkits.mplot3d import axes3d
 
 #fileName = 'C:\\Users\\aless\\Documents\\UBC Orbit\\ADCS-SunSensorData\\Sun_Sensor_Data\\DataRaw.txt'
 
 fileName = 'Data_Raw.txt'
 
+x_unit = 'degrees(alpha)'
+y_unit = 'degrees(beta)'
+z_unit = 'voltage'
+
 data = np.loadtxt(fileName, delimiter=",", comments="#")
+
 
 anglePlat = data[:,0]
 angleServo = data[:,1]
+
+#anglePlat, angleServo = np.meshgrid(anglePlat, angleServo)
+
 voltage1 = data[:,2]
+#voltage1 = voltage1.reshape((len(anglePlat), len(angleServo)))
+
 voltage2 = data[:,3]
 voltage3 = data[:,4]
 voltage4 = data[:,5]
 
-limitV = 1000
+print(len(anglePlat))
+print(len(angleServo))
+print(len(voltage1))
+
+#anglePlat, angleServo = np.meshgrid(anglePlat, angleServo)
+
+plt.clf()
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+cset = ax.scatter(anglePlat,angleServo, voltage1, cmap=cm.coolwarm)
+ax.clabel(cset, fontsize=9, inline=1)
+plt.show()
+
 
 """
 for i in anglePlat :
@@ -36,12 +60,3 @@ for i in anglePlat :
         voltage4[i] = 0
 """
 
-
-"""
-AnglePlat = int8(csv.reader(filename,1,0,[1,0,3600,0]))
-AngleServo = int8(csv.reader(filename,1,1,[1,1,3600,1]))
-Voltage1 = csv.reader(filename,1,2,[1,2,3600,2])
-Voltage2 = csv.reader(filename,1,3,[1,3,3600,3])
-Voltage3 = csv.reader(filename,1,4,[1,4,3600,4])
-Voltage4 = csv.reader(filename,1,5,[1,5,3600,5])
-"""
