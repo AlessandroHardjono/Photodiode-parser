@@ -27,8 +27,10 @@ data = np.loadtxt(fileName, delimiter=",", comments="#")
 #the X (plat) and Y (servo) values
 anglePlat = data[:,0]
 angleServo = data[:,1]
-
 aP, aS = np.meshgrid(anglePlat, angleServo)
+alpha = np.zeros(len(anglePlat))
+beta = np.zeros(len(angleServo))
+diff_alpha = np.zeros(len(anglePlat))
 
 #the Z values
 v1 = data[:,2]
@@ -39,9 +41,13 @@ v4 = data[:,5]
 fit_coeff, stats = P.polyfit(angleServo, anglePlat, 3, full=True)
 
 for i in range(len(anglePlat)):
-    alpha = (180/pi)*atan((WIDTH/(2*HEIGHT))*(((v1[i]+v2[i])-(v3[i]+v4[i]))/
+    alpha[i] = (180/pi)*atan((WIDTH/(2*HEIGHT))*(((v1[i]+v2[i])-(v3[i]+v4[i]))/
             max((v1[i]+v2[i]),(v3[i]+v4[i]))))
+    beta[i] =  (180/pi)*atan((WIDTH/(2*HEIGHT))*(((v1[i]+v4[i])-(v2[i]+v3[i]))/
+            max((v1[i]+v4[i]),(v2[i]+v3[i]))))
 
+for i in range(len(anglePlat)):
+    diff_alpha[i] = alpha[i] - anglePlat[i]
 
 #print to check that the size of the lists are what they are intended to be.
 #print(len(anglePlat))
@@ -54,17 +60,19 @@ plt.clf()
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 #bx = fig.add_subplot(222, projection='3d')
+#residual_fit = fig.add_subplot(111, projection='2d')
 
 
 #choose which one to uncomment depending on what to display
-cset = ax.scatter(anglePlat,angleServo, v1, cmap=cm.coolwarm)
-#cset_fit = bx.
-#ax.plot_surface(anglePlat,angleServo,v1, cmap=cm.coolwarm)
+cset = ax.scatter(anglePlat,angleServo, v1)
+ax.plot_surface(anglePlat,angleServo,v1)
 #cset = ax.scatter(anglePlat,angleServo, v2, cmap=cm.coolwarm)
 #cset = ax.scatter(anglePlat,angleServo, v3, cmap=cm.coolwarm)
 #cset = ax.scatter(anglePlat,angleServo, v4, cmap=cm.coolwarm)
-
 ax.clabel(cset, fontsize=9, inline=1)
+plt.show()
+
+plt.plot(anglePlat, diff_alpha, color='r')
 plt.show()
 
 
