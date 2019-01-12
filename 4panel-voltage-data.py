@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 
 fileName = "Data_raw.txt"
 
+data = np.loadtxt(fileName, delimiter=",", comments="#")
 
 #the X (plat) and Y (servo) values
 anglePlat = data[:,0]
@@ -23,33 +24,33 @@ v2 = data[:,3]
 v3 = data[:,4]
 v4 = data[:,5]
 
-volt1 = np.zeros(60,60)
-volt2 = np.zeros(60,60)
-volt3 = np.zeros(60,60)
-volt4 = np.zeros(60,60)
+volt1 = np.zeros((60,60))
+volt2 = np.zeros((60,60))
+volt3 = np.zeros((60,60))
+volt4 = np.zeros((60,60))
 
 
-for x in range(0,3600) :
-    volt1[anglePlat[i]+31,angleServo[i]+31) = volt1[i]
-    volt2[anglePlat[i]+31,angleServo[i]+31) = volt2[i]
-    volt3[anglePlat[i]+31,angleServo[i]+31) = volt3[i]
-    volt4[anglePlat[i]+31,angleServo[i]+31) = volt4[i]
+for i in range(0,3600) :
+    volt1[int(anglePlat[i]+30),int(angleServo[i]+30)] = v1[i]
+    volt2[int(anglePlat[i]+30),int(angleServo[i]+30)] = v2[i]
+    volt3[int(anglePlat[i]+30),int(angleServo[i]+30)] = v3[i]
+    volt4[int(anglePlat[i]+30),int(angleServo[i]+30)] = v4[i]
     
 
 #plotting
 plt.clf()
 
 plt.subplot(221)
-plt.imshow(volt1, cmap = "heat")
+plt.imshow(volt1, cmap = "plasma")
 
 plt.subplot(222)
-plt.imshow(volt2, cmap = "heat")
+plt.imshow(volt2, cmap = "plasma")
 
 plt.subplot(223)
-plt.imshow(volt3, cmap = "heat")
+plt.imshow(volt3, cmap = "plasma")
 
 plt.subplot(224)
-plt.imshow(volt4, cmap = "heat")
+plt.imshow(volt4, cmap = "plasma")
 
 plt.show()
 
