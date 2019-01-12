@@ -42,15 +42,27 @@ plt.clf()
 
 plt.subplot(221)
 plt.imshow(volt1, cmap = "plasma")
+plt.xlabel("Angle Platform (degrees)")
+plt.ylabel("Angle Servo (degrees")
 
 plt.subplot(222)
 plt.imshow(volt2, cmap = "plasma")
+plt.xlabel("Angle Platform (degrees)")
+plt.ylabel("Angle Servo (degrees")
 
 plt.subplot(223)
 plt.imshow(volt3, cmap = "plasma")
+plt.xlabel("Angle Platform (degrees)")
+plt.ylabel("Angle Servo (degrees")
 
 plt.subplot(224)
 plt.imshow(volt4, cmap = "plasma")
+plt.xlabel("Angle Platform (degrees)")
+plt.ylabel("Angle Servo (degrees")
+
+#plt.title("Voltage Heat Map")
+
+plt.tight_layout()
 
 plt.show()
 
