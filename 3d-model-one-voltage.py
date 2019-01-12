@@ -16,7 +16,7 @@ from numpy.polynomial import polynomial as P
 WIDTH = 3
 HEIGHT = 1.5
 
-fileName = 'Data_Raw.txt'
+fileName = 'Data_raw.txt'
 
 x_unit = 'degrees(alpha)'
 y_unit = 'degrees(beta)'
@@ -65,7 +65,7 @@ ax = fig.add_subplot(111, projection='3d')
 
 #choose which one to uncomment depending on what to display
 cset = ax.scatter(anglePlat,angleServo, v1)
-ax.plot_surface(anglePlat,angleServo,v1)
+#ax.plot_surface(anglePlat,angleServo,v1)
 #cset = ax.scatter(anglePlat,angleServo, v2, cmap=cm.coolwarm)
 #cset = ax.scatter(anglePlat,angleServo, v3, cmap=cm.coolwarm)
 #cset = ax.scatter(anglePlat,angleServo, v4, cmap=cm.coolwarm)
