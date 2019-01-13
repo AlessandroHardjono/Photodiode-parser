@@ -24,12 +24,13 @@ v2 = data[:,3]
 v3 = data[:,4]
 v4 = data[:,5]
 
+#setting up the plot
 volt1 = np.zeros((60,60))
 volt2 = np.zeros((60,60))
 volt3 = np.zeros((60,60))
 volt4 = np.zeros((60,60))
 
-
+#plotting the data for each point
 for i in range(0,3600) :
     volt1[int(anglePlat[i]+30),int(angleServo[i]+30)] = v1[i]
     volt2[int(anglePlat[i]+30),int(angleServo[i]+30)] = v2[i]

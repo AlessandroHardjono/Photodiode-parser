@@ -40,12 +40,14 @@ v4 = data[:,5]
 
 fit_coeff, stats = P.polyfit(angleServo, anglePlat, 3, full=True)
 
+#calculation for alpha and beta angles from the voltage
 for i in range(len(anglePlat)):
     alpha[i] = (180/pi)*atan((WIDTH/(2*HEIGHT))*(((v1[i]+v2[i])-(v3[i]+v4[i]))/
             max((v1[i]+v2[i]),(v3[i]+v4[i]))))
     beta[i] =  (180/pi)*atan((WIDTH/(2*HEIGHT))*(((v1[i]+v4[i])-(v2[i]+v3[i]))/
             max((v1[i]+v4[i]),(v2[i]+v3[i]))))
 
+#calculating the residuals
 for i in range(len(anglePlat)):
     diff_alpha[i] = alpha[i] - anglePlat[i]
 
@@ -64,6 +66,7 @@ ax2 = fig.add_subplot(222, projection='3d')
 ax3 = fig.add_subplot(223, projection='3d')
 ax4 = fig.add_subplot(224, projection='3d')
 
+#titles and labels
 ax1.set_title("Voltage1")
 ax2.set_title("Voltage2")
 ax3.set_title("Voltage3")
@@ -94,10 +97,11 @@ cset4 = ax4.scatter(anglePlat,angleServo, v4, cmap=cm.coolwarm)
 
 # ax1.clabel(cset1, fontsize=9, inline=1)
 
-
+#tight layout to make it neat
 plt.tight_layout()
 plt.show()
 
+#plot the residuals
 plt.plot(anglePlat, diff_alpha, color='r')
 plt.show()
 
