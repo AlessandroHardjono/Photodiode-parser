@@ -57,19 +57,45 @@ for i in range(len(anglePlat)):
 #print(stats)
 
 plt.clf()
+
 fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
+ax1 = fig.add_subplot(221, projection='3d')
+ax2 = fig.add_subplot(222, projection='3d')
+ax3 = fig.add_subplot(223, projection='3d')
+ax4 = fig.add_subplot(224, projection='3d')
+
+ax1.set_title("Voltage1")
+ax2.set_title("Voltage2")
+ax3.set_title("Voltage3")
+ax4.set_title("Voltage4")
+
+ax1.set_xlabel("Platform Angle (degrees)")
+ax1.set_ylabel("Servo Angle (degrees)")
+ax2.set_xlabel("Platform Angle (degrees)")
+ax2.set_ylabel("Servo Angle (degrees)")
+ax3.set_xlabel("Platform Angle (degrees)")
+ax3.set_ylabel("Servo Angle (degrees)")
+ax4.set_xlabel("Platform Angle (degrees)")
+ax4.set_ylabel("Servo Angle (degrees)")
+
+# fig.xlabel("Platform angle (degrees)")
+# fig.ylabel("Servo angle (degrees)")
+
 #bx = fig.add_subplot(222, projection='3d')
 #residual_fit = fig.add_subplot(111, projection='2d')
 
 
 #choose which one to uncomment depending on what to display
-cset = ax.scatter(anglePlat,angleServo, v1)
 #ax.plot_surface(anglePlat,angleServo,v1)
-#cset = ax.scatter(anglePlat,angleServo, v2, cmap=cm.coolwarm)
-#cset = ax.scatter(anglePlat,angleServo, v3, cmap=cm.coolwarm)
-#cset = ax.scatter(anglePlat,angleServo, v4, cmap=cm.coolwarm)
-ax.clabel(cset, fontsize=9, inline=1)
+cset1 = ax1.scatter(anglePlat,angleServo, v1, cmap=cm.coolwarm)
+cset2 = ax2.scatter(anglePlat,angleServo, v2, cmap=cm.coolwarm)
+cset3 = ax3.scatter(anglePlat,angleServo, v3, cmap=cm.coolwarm)
+cset4 = ax4.scatter(anglePlat,angleServo, v4, cmap=cm.coolwarm)
+
+# ax1.clabel(cset1, fontsize=9, inline=1)
+
+
+plt.tight_layout()
 plt.show()
 
 plt.plot(anglePlat, diff_alpha, color='r')
