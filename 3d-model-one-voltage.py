@@ -104,18 +104,14 @@ plt.tight_layout()
 plt.show()
 
 #plot the residuals
-plt.plot(anglePlat, diff_alpha, color='r')
+plt.scatter(anglePlat, diff_alpha, color='r')
 plt.title("Residuals")
 plt.xlabel("Platform Angle (degrees)")
 plt.ylabel("Difference (PlatAngle - Alpha)")
 plt.show()
 
-plt.plot(angleServo, diff_beta, color='b')
+plt.scatter(angleServo, diff_beta, color='b')
 plt.title("Residuals")
 plt.xlabel("Servo Angle (degrees)")
 plt.ylabel("Difference (ServoAngle - Beta)")
 plt.show()
-
-
-
-
