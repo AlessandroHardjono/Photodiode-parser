@@ -31,6 +31,7 @@ aP, aS = np.meshgrid(anglePlat, angleServo)
 alpha = np.zeros(len(anglePlat))
 beta = np.zeros(len(angleServo))
 diff_alpha = np.zeros(len(anglePlat))
+diff_beta = np.zeros(len(angleServo))
 
 #the Z values
 v1 = data[:,2]
@@ -50,6 +51,7 @@ for i in range(len(anglePlat)):
 #calculating the residuals
 for i in range(len(anglePlat)):
     diff_alpha[i] = alpha[i] - anglePlat[i]
+    diff_beta[i] = beta[i] - angleServo[i]
 
 #print to check that the size of the lists are what they are intended to be.
 #print(len(anglePlat))
@@ -103,7 +105,17 @@ plt.show()
 
 #plot the residuals
 plt.plot(anglePlat, diff_alpha, color='r')
+plt.title("Residuals")
+plt.xlabel("Platform Angle (degrees)")
+plt.ylabel("Difference (PlatAngle - Alpha)")
 plt.show()
+
+plt.plot(angleServo, diff_beta, color='b')
+plt.title("Residuals")
+plt.xlabel("Servo Angle (degrees)")
+plt.ylabel("Difference (ServoAngle - Beta)")
+plt.show()
+
 
 
 
