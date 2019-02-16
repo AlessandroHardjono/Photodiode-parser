@@ -16,7 +16,7 @@ from numpy.polynomial import polynomial as P
 WIDTH = 3
 HEIGHT = 1.5
 
-fileName = 'Data_raw.txt'
+fileName = 'DataTesting27OCT2018_4.txt'
 
 x_unit = 'degrees(alpha)'
 y_unit = 'degrees(beta)'
